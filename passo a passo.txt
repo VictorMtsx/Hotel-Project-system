@@ -1,0 +1,36 @@
+primeiramente, preciso iniciar um projeto fullStack com nivel junior de um sitema de hotel, onde nesse sistema tera duas interfaces principais, a do cliente onde tera acesso a serviÇo de quarto, cardapio do dia e etc, e a interface do hotel, onde tera acesso aos quartos dispponiveis e não disponiveis e serviços de quartos solicitados, porem junto a interface do hotel, tera uma interface filha que sera referente aos pedidos de alimentos que seria direcionados a cozinha, leve em conta que sou apenas um iniciante na area, liste pra mim os paços que preciso seguir para tirar esse projeto do zero. de começo estou certo quue usarei as tecnologias tailwindcss, react, react-query, drizzle e algum banco de dados, voce acha que precisa de mais alguma coisa?
+
+
+O ChatGPT disse:
+ChatGPT
+Você está no caminho certo! Com as tecnologias que escolheu, você pode construir um sistema sólido. Aqui estão os passos que você pode seguir:
+
+1. Planejamento
+Defina os requisitos: Liste as funcionalidades desejadas para ambas as interfaces.
+Wireframes: Crie esboços para visualizar a navegação e layout.
+
+2. Configuração do Ambiente
+Instale Node.js: Certifique-se de ter o Node.js instalado.
+Crie um repositório: Use Git para versionar seu projeto.
+
+3. Frontend
+Inicie o projeto React: Utilize Create React App.
+Adicione Tailwind CSS: Configure o Tailwind para estilização.
+Instale React Query: Para gerenciar requisições assíncronas.
+
+4. Backend
+Escolha um banco de dados: Use Drizzle para interagir com o banco de dados que você escolher.
+Configure o servidor: Crie um servidor com Express para gerenciar rotas e lógica.
+
+5. Implementação
+Desenvolva a interface do cliente: Implemente funcionalidades como serviço de quarto e cardápio.
+Desenvolva a interface do hotel: Adicione funcionalidades para gerenciar quartos e pedidos de alimentos.
+
+6. Testes
+Teste as funcionalidades: Verifique se tudo está funcionando como esperado.
+
+7. Deploy
+Escolha uma plataforma: Use Heroku, Vercel ou outra plataforma para fazer o deploy do seu projeto.
+8. Documentação
+Documente o projeto: Explique como usar e como contribuir.
+Com isso, você terá uma boa base para começar! Se precisar de mais detalhes em alguma etapa, é só avisar!
