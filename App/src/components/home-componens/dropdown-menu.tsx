@@ -7,7 +7,7 @@ export function DropDownMenu() {
 			<DropdownMenu.Trigger asChild>
 				<button
 					type="button"
-					className=" p-1 rounded-full bg-zinc-200 cursor-pointer "
+					className=" p-1 rounded-full bg-zinc-200 cursor-pointer hover:bg-blue-300"
 				>
 					<img src="/public/Account.png" alt="Account-image" />
 				</button>
@@ -23,7 +23,7 @@ export function DropDownMenu() {
 						</a>
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<a href="#" className="p-2 hover:font-medium">
+						<a href="/Login" className="p-2 hover:font-medium">
 							Log in
 						</a>
 					</DropdownMenu.Item>

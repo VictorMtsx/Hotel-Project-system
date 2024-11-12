@@ -1,6 +1,9 @@
+import { IoLogoGooglePlaystore } from "react-icons/io5";
+import { FaAppStoreIos } from "react-icons/fa";
+
 export function Footer() {
 	return (
-		<>
+		<footer className="w-full h-auto mt-24">
 			<div className="w-full h-auto flex flex-row pt-24 justify-around items-center bg-zinc-200">
 				<div className="w-96 h-56 mb-24">
 					<img src="../src/assets/LOGO.png" alt="" />
@@ -14,24 +17,16 @@ export function Footer() {
 							className="flex flex-row gap-3 w-36 h-11 py-1.5 px-5 bg-zinc-300 justify-start items-center rounded-lg
 							cursor-pointer"
 						>
-							<img
-								src="../src/assets/ion_logo-google-playstore.png"
-								alt=""
-								className="size-6"
-							/>
+							<IoLogoGooglePlaystore className="size-6" />
 							<p className="text-lg h-5 mb-2 font-semibold size-4 text-zinc-600 justify-center items-center">
 								PlayStore
 							</p>
 						</button>
 						<button
 							type="button"
-							className="flex flex-row gap-3 w-36 h-11 py-1.5 px-5 bg-zinc-300 justify-start items-center rounded-lg cursor-pointer"
+							className="flex flex-row gap-3 w-40 h-11 py-1.5 px-5 bg-zinc-300 justify-start items-center rounded-lg cursor-pointer"
 						>
-							<img
-								src="../src/assets/ion_logo-apple-appstore.png"
-								alt=""
-								className="size-6"
-							/>
+							<FaAppStoreIos className="text-blue-500 size-6" />
 							<p className="text-lg h-5 mb-2 font-semibold size-4 text-zinc-600 justify-center items-center">
 								AppleStore
 							</p>
@@ -120,6 +115,6 @@ export function Footer() {
 					</p>
 				</section>
 			</div>
-		</>
+		</footer>
 	);
 }

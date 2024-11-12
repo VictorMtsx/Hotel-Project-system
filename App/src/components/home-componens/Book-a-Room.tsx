@@ -49,8 +49,8 @@ export function BookARoom() {
 						</div>
 					</div>
 					<button
-						type="button"
-						className=" h-10 px-4  mt-6 bg-[#65AEF2] rounded-xl"
+						type="submit"
+						className=" h-10 px-4  mt-6 bg-[#65AEF2] rounded-xl cursor-pointer hover:bg-blue-500"
 					>
 						<p className="font-bold text-white">BOOK NOW</p>
 					</button>
