@@ -18,7 +18,7 @@ export function DropDownMenu() {
 					sideOffset={5}
 				>
 					<DropdownMenu.Item>
-						<a href="#" className="p-2 hover:font-medium">
+						<a href="/SignUp" className="p-2 hover:font-medium">
 							Sign Up
 						</a>
 					</DropdownMenu.Item>

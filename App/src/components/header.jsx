@@ -25,17 +25,6 @@ const Welcome = () => ({
 	},
 });
 
-const dropdown = () => ({
-	initial: { opacity: 0 },
-	animate: {
-		opacity: 1,
-		transition: {
-			duration: 1.2,
-			delay: 0.3,
-		},
-	},
-});
-
 export function Header() {
 	return (
 		<header className="w-full h-[790px]">
@@ -69,12 +58,7 @@ export function Header() {
 					<li className="font-semibold text-zinc-600">
 						<a href="">Special Offers</a>
 					</li>
-					<motion.li
-						variants={dropdown()}
-						initial="initial"
-						animate="animate"
-						className="font-semibold text-zinc-600"
-					>
+					<motion.li className="font-semibold text-zinc-600">
 						<DropDownMenu />
 					</motion.li>
 				</ul>
