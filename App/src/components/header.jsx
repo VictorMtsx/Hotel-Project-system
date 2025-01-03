@@ -78,6 +78,20 @@ export function Header() {
 					Comfort in Hotels!
 				</h1>
 			</motion.div>
+
+			<motion.div
+				variants={navAnimation()}
+				initial="initial"
+				animate="animate"
+				className=" h-12 pt-60 pl-32 justify-center items-center"
+			>
+				<button
+					className="w-32 h-12 bg-[#65AEF2] text-zinc-900 font-bold rounded-lg"
+					type="button"
+				>
+					Contact Us
+				</button>
+			</motion.div>
 		</header>
 	);
 }
