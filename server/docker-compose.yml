@@ -1,0 +1,20 @@
+name: server-hotel
+
+services:
+  node:
+    image: node:22-alpine
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/server
+    working_dir: /server
+
+  pg:
+    image: bitnami/postgresql:17.2.0
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: hotel-db
+
