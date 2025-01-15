@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 // Importa o zodResolver para integrar a validação do Zod com o hook useForm
 import { zodResolver } from "@hookform/resolvers/zod";
-import { em } from "framer-motion/client";
 
 const logInSchema = z.object({
 	email: z
@@ -16,7 +15,8 @@ const logInSchema = z.object({
 		}),
 	password: z
 		.string()
-		.min(6, { message: "A senha deve ter no mínimo 6 caracteres" })
+		.min(8, { message: "A senha deve ter no mínimo 6 caracteres" })
+		.max(12, { message: "A senha deve ter no máximo 12 caracteres" })
 		.nonempty({
 			message: "Digite sua senha",
 		}),
@@ -27,12 +27,26 @@ export function LogIn() {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm({
 		resolver: zodResolver(logInSchema),
 	});
 
-	function hundlerSubmitFormLogIn(data) {
-		console.log(data);
+	async function hundlerSubmitFormLogIn(data) {
+		const response = await fetch("http://localhost:3000/log-in", {
+			method: "POST",
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		if (response.ok) {
+			console.log("usuário encontrado com sucesso!");
+		} else {
+			console.log("Usuário ou senha inválidos");
+		}
+
+		reset();
 	}
 
 	return (

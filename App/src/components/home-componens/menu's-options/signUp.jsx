@@ -53,13 +53,26 @@ export function SignUp() {
 		register, // Função para registrar os campos do formulário
 		handleSubmit, // Função para gerenciar o envio do formulário
 		formState: { errors }, // Estado do formulário, incluindo erros de validação
+		reset,
 	} = useForm({
 		resolver: zodResolver(signUpSchema), // Integra o esquema de validação do Zod com o useForm
 	});
 
 	// Função de submissão do formulário
-	function hundlerSubmitForm(data) {
-		console.log(data); // Exibe os dados do formulário no console
+	async function hundlerSubmitForm(data) {
+		const response = await fetch("http://localhost:3000/sign-up", {
+			method: "POST",
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		if (response.ok) {
+			console.log("Cadastro realizado com sucesso!");
+			console.log(data);
+		}
+
+		reset();
 	}
 
 	return (

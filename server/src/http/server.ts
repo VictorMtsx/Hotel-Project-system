@@ -1,5 +1,6 @@
 import express from "express";
 import { createUser } from "../functions/create-user.ts";
+import { checkExistingUser } from "../functions/checkExistingUser.ts";
 import { z } from "zod";
 import cors from "cors";
 
@@ -30,6 +31,29 @@ app.post("/sign-up", async (req, res) => {
 		email: body.email,
 		password: body.password,
 	});
+
+	try {
+		res.status(201).send("user criado com sucesso");
+		console.log("user criado com sucesso");
+	} catch (error) {
+		console.log(new Error("error ao cadastrar o user"));
+	}
+});
+
+app.post("/log-in", async (req, res) => {
+	const checarLogInSchema = z.object({
+		email: z.string().email(),
+		password: z.string().min(8).max(12).nonempty(),
+	});
+	const { email, password } = checarLogInSchema.parse(req.body);
+	const isUserValid = await checkExistingUser({ email, password });
+
+	if (isUserValid.found) {
+		res.status(200).send("user encontrado");
+		// console.log("user logado com sucesso");
+	} else {
+		res.status(401).send("user ou senha inválidos");
+	}
 });
 
 app.listen(3000, () => {

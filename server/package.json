@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "tsx --watch --env-file .env  src/http/server.ts",
 		"seed": "tsx --env-file .env src/http/seed.ts",
-		"drizzleInit": "npx drizzle-kit generate && npx drizzle-kit migrate && npm run seed"
+		"drizzleInit": "npx drizzle-kit generate && npx drizzle-kit migrate "
 	},
 	"keywords": [],
 	"author": "",
