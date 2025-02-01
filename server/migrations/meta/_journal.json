@@ -15,6 +15,13 @@
       "when": 1736802080756,
       "tag": "0001_special_starbolt",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1738413835524,
+      "tag": "0002_curvy_magik",
+      "breakpoints": true
     }
   ]
 }

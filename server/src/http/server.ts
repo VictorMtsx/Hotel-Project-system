@@ -1,8 +1,11 @@
 import express from "express";
-import { createUser } from "../functions/create-user.ts";
-import { checkExistingUser } from "../functions/checkExistingUser.ts";
-import { z } from "zod";
+import "dotenv/config";
 import cors from "cors";
+import { createUser } from "../functions/create-user.ts";
+import { generateVerificationToken } from "../functions/emailValidation/functions/generateVerificationToken.ts";
+import { checkExistingUser } from "../functions/checkExistingUser.ts";
+import { sendEmail } from "../functions/sendEmail.ts";
+import { z } from "zod";
 
 const app = express();
 
@@ -12,8 +15,6 @@ app.use(express.json());
 app.get("/", (req, res) => {
 	res.send("server is running");
 });
-
-app.get("/sign-up", (req, res) => {});
 
 app.post("/sign-up", async (req, res) => {
 	const createUserSchema = z.object({
@@ -25,14 +26,23 @@ app.post("/sign-up", async (req, res) => {
 
 	const body = createUserSchema.parse(req.body);
 
+	const verificationToken = generateVerificationToken();
+
 	await createUser({
 		name: body.name,
 		nickname: body.nickname,
 		email: body.email,
 		password: body.password,
+		verificationToken,
+		isVerified: false,
 	});
 
 	try {
+		// const verificationLink = `http://seusite.com/verify-email?token=${verificationToken}`;
+		// const emailText = `Clique no link para verificar seu e-mail: ${verificationLink}`;
+
+		await sendEmail(body.email, "verifique seu e-mail", "verifique seu e-mail");
+
 		res.status(201).send("user criado com sucesso");
 		console.log("user criado com sucesso");
 	} catch (error) {
