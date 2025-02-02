@@ -1,5 +1,4 @@
 import { pgTable, text, varchar } from "drizzle-orm/pg-core";
-import { boolean } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
 
 export const users = pgTable("users", {
@@ -12,6 +11,4 @@ export const users = pgTable("users", {
 		.notNull()
 		.$default(() => "Sem apelido"),
 	password: varchar("password", { length: 20 }).notNull(),
-	verificationToken: text("verificationToken").unique(),
-	isVerified: boolean("isVerified").default(false),
 });

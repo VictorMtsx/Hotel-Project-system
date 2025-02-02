@@ -2,21 +2,43 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import { createUser } from "../functions/create-user.ts";
-import { generateVerificationToken } from "../functions/emailValidation/functions/generateVerificationToken.ts";
 import { checkExistingUser } from "../functions/checkExistingUser.ts";
 import { sendEmail } from "../functions/sendEmail.ts";
 import { z } from "zod";
+import jwt from "jsonwebtoken";
 
-const app = express();
+const app: express.Express = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (res: express.Response) => {
 	res.send("server is running");
 });
 
-app.post("/sign-up", async (req, res) => {
+app.get("/autorization", verifyJwt, (res: express.Response) => {
+	console.log("voce foi autorizado");
+});
+
+function verifyJwt(
+	req: express.Request,
+	res: express.Response,
+	next: express.NextFunction,
+) {
+	const token = req.headers["x-access-token"] as string;
+	jwt.verify(token, process.env.SECRET_TOKEN as string, (err, decoded) => {
+		if (err) {
+			console.log(err);
+			return res.status(401).send("Token inválido");
+		}
+
+		req.body.id = (decoded as { id: string }).id;
+
+		next();
+	});
+}
+
+app.post("/sign-up", async (req: express.Request, res: express.Response) => {
 	const createUserSchema = z.object({
 		name: z.string(),
 		nickname: z.string(),
@@ -26,25 +48,23 @@ app.post("/sign-up", async (req, res) => {
 
 	const body = createUserSchema.parse(req.body);
 
-	const verificationToken = generateVerificationToken();
-
 	await createUser({
 		name: body.name,
 		nickname: body.nickname,
 		email: body.email,
 		password: body.password,
-		verificationToken,
-		isVerified: false,
 	});
 
 	try {
-		// const verificationLink = `http://seusite.com/verify-email?token=${verificationToken}`;
-		// const emailText = `Clique no link para verificar seu e-mail: ${verificationLink}`;
+		await sendEmail(
+			body.email,
+			"conta criada com sucesso",
+			"muito obrigado por se cadastrar em nosso site! Agora você faz parte da nossa comunidade de clientes. Bem-vindo!",
+		);
 
-		await sendEmail(body.email, "verifique seu e-mail", "verifique seu e-mail");
-
-		res.status(201).send("user criado com sucesso");
 		console.log("user criado com sucesso");
+		res.status(201).send("user criado com sucesso");
+		return;
 	} catch (error) {
 		console.log(new Error("error ao cadastrar o user"));
 	}
@@ -58,12 +78,15 @@ app.post("/log-in", async (req, res) => {
 	const { email, password } = checarLogInSchema.parse(req.body);
 	const isUserValid = await checkExistingUser({ email, password });
 
-	if (isUserValid.found) {
-		res.status(200).send("user encontrado");
-		// console.log("user logado com sucesso");
-	} else {
-		res.status(401).send("user ou senha inválidos");
+	if (isUserValid?.found) {
+		const token = jwt.sign(
+			{ id: isUserValid.id },
+			process.env.SECRET_TOKEN as string,
+			{ expiresIn: 300 },
+		);
+		return res.json({ auth: true, token });
 	}
+	res.status(401).end();
 });
 
 app.listen(3000, () => {

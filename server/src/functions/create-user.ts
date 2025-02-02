@@ -6,18 +6,9 @@ interface User {
 	nickname: string;
 	email: string;
 	password: string;
-	// verificationToken?: string;
-	// isVerified?: boolean;
 }
 
-export async function createUser({
-	name,
-	nickname,
-	email,
-	password,
-	// verificationToken,
-	// isVerified = false,
-}: User) {
+export async function createUser({ name, nickname, email, password }: User) {
 	const result = await db
 		.insert(users)
 		.values({
@@ -25,8 +16,6 @@ export async function createUser({
 			email: email,
 			nickname: nickname,
 			password: password,
-			// verificationToken,
-			// isVerified,
 		})
 		.returning();
 
