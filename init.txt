@@ -1,0 +1,15 @@
+1 => docker compose up -d (server)
+
+1.2 => iniciar o node (server) 
+
+1.3 => npm i (server)
+
+2 => npm run drizzleInit (server)
+
+3 => npm run seed (server) obs: 'opicional'
+
+4 => npm run dev (server)
+
+5 => npm i (App)
+
+6 => npm run dev (App)
