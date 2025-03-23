@@ -11,6 +11,7 @@ import { users } from "../db/schema.ts";
 import { eq } from "drizzle-orm";
 import { adicionarUserCadastrado } from "../functions/emailValidation/functions/adicionarUserCadastrado.ts";
 import { env } from "../env.ts";
+import getUsersCadastrados from "../functions/get-users-cadastrados.ts";
 
 const app: express.Express = express();
 
@@ -160,6 +161,16 @@ app.post(
 	},
 );
 
-app.listen(3333, () => {
+app.get("/cadastrados", async (req: express.Request, res: express.Response) => {
+	try {
+		const users = await getUsersCadastrados(); // Espera os dados corretamente
+		return res.json(users); // Retorna os dados para o cliente
+	} catch (error) {
+		console.error("Erro ao buscar usuários cadastrados:", error);
+		return res.status(500).json({ error: "Erro interno do servidor" });
+	}
+});
+
+app.listen(3000, () => {
 	console.log("server is running on port 3333");
 });

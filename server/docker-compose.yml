@@ -3,11 +3,18 @@ name: server-hotel
 services:
   node:
     image: node:22-alpine
+    container_name: backend_hotel
+    env_file:
+      - .env
     ports:
       - "3000:3000"
     volumes:
       - .:/server
     working_dir: /server
+    command: >
+      sh -c "npm install && npm run drizzleInit && npm run dev"
+    depends_on:
+      - pg
 
   pg:
     image: bitnami/postgresql:17.2.0

@@ -8,19 +8,19 @@ export default defineConfig({
 		port: 5173,
 		proxy: {
 			"/autorization": {
-				target: "http://localhost:3333",
+				target: "http://localhost:3000",
 				changeOrigin: true,
 			},
 			"/sign-up": {
-				target: "http://localhost:3333",
+				target: "http://localhost:3000",
 				changeOrigin: true,
 			},
 			"/log-in": {
-				target: "http://localhost:3333",
+				target: "http://localhost:3000",
 				changeOrigin: true,
 			},
 			"/home-page": {
-				target: "http://localhost:3333",
+				target: "http://localhost:3000",
 				changeOrigin: true,
 			},
 		},

@@ -60,7 +60,7 @@ export function SignUp() {
 
 	// Função de submissão do formulário
 	async function hundlerSubmitForm(data) {
-		const response = await fetch("http://localhost:3333/sign-up", {
+		const response = await fetch("http://localhost:3000/sign-up", {
 			method: "POST",
 			body: JSON.stringify(data),
 			headers: {

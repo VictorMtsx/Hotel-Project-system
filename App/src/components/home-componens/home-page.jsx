@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 export default function HomePage() {
-	const TIMEOUT = 10 * 60 * 1000;
+	const TIMEOUT = 2 * 60 * 1000;
 
 	useEffect(() => {
 		let timer;
