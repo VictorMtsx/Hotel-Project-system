@@ -9,7 +9,6 @@ export function Home() {
 			<Header />
 			<Main />
 			<Footer />
-			<HomePage />
 		</>
 	);
 }

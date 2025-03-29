@@ -5,8 +5,8 @@
 	"type": "module",
 	"proxy": "http://localhost:3000",
 	"scripts": {
-		"dev": "vite",
-		"build": "tsc -b && vite build",
+		"start": "vite",
+		"build": "vite build",
 		"lint": "biomejs",
 		"preview": "vite preview"
 	},
